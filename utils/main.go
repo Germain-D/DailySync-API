@@ -35,4 +35,5 @@ func main() {
 		return
 	}
 	fmt.Println("Token JWT généré:", token)
+
 }
