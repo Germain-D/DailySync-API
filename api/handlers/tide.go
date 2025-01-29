@@ -68,6 +68,16 @@ func GetTideState(w http.ResponseWriter, r *http.Request, StormApi string, lat s
 
 	} else {
 
+		// si le fichier d'hier existe on le supprime
+		yesterday := today.AddDate(0, 0, -1)
+		json_name_yesterday := "data/tide_" + yesterday.Format("2006-01-02") + ".json"
+		if _, err := os.Stat(json_name_yesterday); err == nil {
+			err := os.Remove(json_name_yesterday)
+			if err != nil {
+				log.Fatalf("Erreur lors de la suppression du fichier : %v", err)
+			}
+		}
+
 		// Calculer les timestamps pour `start` et `end`
 		now := time.Now()
 		start := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC) // Début de la journée
