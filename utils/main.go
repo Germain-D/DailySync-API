@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"os"
-	"time"
 
 	"github.com/dgrijalva/jwt-go"
 )
@@ -16,7 +16,7 @@ func GenerateJWT() (string, error) {
 	// Ajouter des claims (informations supplémentaires)
 	claims["authorized"] = true
 	claims["user"] = "testUser"
-	claims["exp"] = time.Now().Add(time.Hour * 24).Unix() // Expiration dans 24h
+	//claims["exp"] = time.Now().Add(time.Hour * 24).Unix() // Expiration dans 24h
 
 	// Signer le token
 	tokenString, err := token.SignedString(jwtKey)
@@ -28,11 +28,11 @@ func GenerateJWT() (string, error) {
 }
 
 func main() {
-	/*token, err := GenerateJWT()
+	token, err := GenerateJWT()
 	if err != nil {
 		fmt.Println("Erreur lors de la génération du token:", err)
 		return
 	}
-	fmt.Println("Token JWT généré:", token)*/
+	fmt.Println("Token JWT généré:", token)
 
 }
