@@ -47,9 +47,7 @@ type Value struct {
 	Stars           string `json:"stars"`
 }
 
-func GetSurfConditions(w http.ResponseWriter, r *http.Request) {
-	// URL de la page web
-	url := "https://www.surf-report.com/meteo-surf/la-guerite-s1170.html" // Remplacez par l'URL de votre page web
+func GetSurfConditions(w http.ResponseWriter, r *http.Request, url string) {
 
 	// Récupérer le contenu de la page
 	htmlContent, err := GetPageContent(url)
@@ -78,7 +76,6 @@ func GetSurfConditions(w http.ResponseWriter, r *http.Request) {
 
 		result := re.FindStringSubmatch(match[1])
 		if len(result) > 0 {
-			fmt.Println("Contenu trouvé:", result[0])
 			data = result[1]
 
 		}
@@ -89,8 +86,6 @@ func GetSurfConditions(w http.ResponseWriter, r *http.Request) {
 	// Remove any remaining whitespace
 	data = strings.TrimSpace(data)
 
-	fmt.Println("Résultat final:", data)
-
 	var forecasts []Forecast
 	err = json.Unmarshal([]byte(data), &forecasts)
 	if err != nil {
@@ -98,16 +93,6 @@ func GetSurfConditions(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Exemple d'affichage des données
-	for _, forecast := range forecasts {
-		fmt.Printf("Date: %s\n", forecast.DateKey)
-		for _, value := range forecast.Values {
-			fmt.Printf("  DateHour: %s, HoulePrimaire: %s\n", value.DateHour, value.HoulePrimaire)
-		}
-	}
-
-	// parcours le json et compte le nombre de fois que "fa fa-star" apparait
-	// dans la valeur de la clé "stars" et indique le nombre dans "stars_count"
 	for i, forecast := range forecasts {
 
 		for j, value := range forecast.Values {
