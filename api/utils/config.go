@@ -12,6 +12,7 @@ type Config struct {
 	SecretKey      string
 	SurfReportLink string
 	LogLevel       string
+	StormGlassKey  string
 }
 
 // Initialize a global SugaredLogger
@@ -35,6 +36,7 @@ func LoadConfig() (*Config, error) {
 		SecretKey:      getEnv("SECRET_KEY", "your_secret_key"),
 		SurfReportLink: getEnv("SURF_REPORT_LINK", "https://www.surf-report.com/meteo-surf/la-guerite-s1170.html"),
 		LogLevel:       getEnv("LOG_LEVEL", "info"),
+		StormGlassKey:  getEnv("STORM_GLASS_KEY", "your_stormglass_key"),
 	}, nil
 }
 

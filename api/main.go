@@ -39,7 +39,9 @@ func main() {
 	api.HandleFunc("/surf", func(w http.ResponseWriter, r *http.Request) {
 		handlers.GetSurfConditions(w, r, config.SurfReportLink)
 	}).Methods("GET")
-	api.HandleFunc("/tide", handlers.GetTideState).Methods("GET")
+	api.HandleFunc("/tide", func(w http.ResponseWriter, r *http.Request) {
+		handlers.GetTideState(w, r, config.StormGlassKey)
+	}).Methods("GET")
 	api.HandleFunc("/party", handlers.GetTodaysParty).Methods("GET")
 	api.HandleFunc("/btc", handlers.GetBTCPrice).Methods("GET")
 
