@@ -18,8 +18,6 @@ DailySync API is a powerful Golang-based API that provides essential daily infor
 
 DailySync API is perfect for developers, surfers, weather enthusiasts, and crypto traders who need quick, reliable daily updates.  
 
-🔗 **Get started today and sync up with your day!**  
-
 ---
 
 ### **TO DO**
