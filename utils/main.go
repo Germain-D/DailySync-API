@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -29,11 +28,11 @@ func GenerateJWT() (string, error) {
 }
 
 func main() {
-	token, err := GenerateJWT()
+	/*token, err := GenerateJWT()
 	if err != nil {
 		fmt.Println("Erreur lors de la génération du token:", err)
 		return
 	}
-	fmt.Println("Token JWT généré:", token)
+	fmt.Println("Token JWT généré:", token)*/
 
 }
