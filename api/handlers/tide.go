@@ -46,9 +46,8 @@ type TideResponse struct {
 	Meta Meta       `json:"meta"`
 }
 
-func GetTideState(w http.ResponseWriter, r *http.Request, StormApi string) {
-	lat := "47.593"
-	lng := "-3.148"
+func GetTideState(w http.ResponseWriter, r *http.Request, StormApi string, lat string, lng string) {
+
 	today := time.Now()
 	json_name := "data/tide_" + today.Format("2006-01-02") + ".json"
 

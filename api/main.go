@@ -35,12 +35,14 @@ func main() {
 	api.Use(middleware.AuthMiddleware)
 
 	// Définir les routes
-	api.HandleFunc("/weather", handlers.GetWeather).Methods("GET")
+	api.HandleFunc("/weather", func(w http.ResponseWriter, r *http.Request) {
+		handlers.GetWeather(w, r, config.WeatherLat, config.WeatherLon)
+	}).Methods("GET")
 	api.HandleFunc("/surf", func(w http.ResponseWriter, r *http.Request) {
 		handlers.GetSurfConditions(w, r, config.SurfReportLink)
 	}).Methods("GET")
 	api.HandleFunc("/tide", func(w http.ResponseWriter, r *http.Request) {
-		handlers.GetTideState(w, r, config.StormGlassKey)
+		handlers.GetTideState(w, r, config.StormGlassKey, config.SpotSurfLat, config.SpotSurfLon)
 	}).Methods("GET")
 	api.HandleFunc("/party", handlers.GetTodaysParty).Methods("GET")
 	api.HandleFunc("/btc", handlers.GetBTCPrice).Methods("GET")

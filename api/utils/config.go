@@ -13,6 +13,10 @@ type Config struct {
 	SurfReportLink string
 	LogLevel       string
 	StormGlassKey  string
+	SpotSurfLat    string
+	SpotSurfLon    string
+	WeatherLat     string
+	WeatherLon     string
 }
 
 // Initialize a global SugaredLogger
@@ -37,6 +41,10 @@ func LoadConfig() (*Config, error) {
 		SurfReportLink: getEnv("SURF_REPORT_LINK", "https://www.surf-report.com/meteo-surf/la-guerite-s1170.html"),
 		LogLevel:       getEnv("LOG_LEVEL", "info"),
 		StormGlassKey:  getEnv("STORM_GLASS_KEY", "your_stormglass_key"),
+		SpotSurfLat:    getEnv("SPOT_SURF_LAT", "47.593"),
+		SpotSurfLon:    getEnv("SPOT_SURF_LON", "-3.148"),
+		WeatherLat:     getEnv("WEATHER_LAT", "47.6569"),
+		WeatherLon:     getEnv("WEATHER_LON", "-2.762"),
 	}, nil
 }
 
